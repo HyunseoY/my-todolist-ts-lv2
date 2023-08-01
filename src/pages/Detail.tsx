@@ -1,28 +1,35 @@
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { RootState } from 'redux/config/configStore';
 import styled from 'styled-components';
 
 function Detail() {
   const params = useParams();
-  const todos = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state: RootState) => state.todos.todos);
   const navigate = useNavigate();
 
   const foundTodo = todos.find((item) => {
-    return item.id === params.id;
+    return item.id === Number(params.id);
   });
 
   return (
     <StDiv>
-      <StId>ID : {foundTodo.id}</StId>
-      <StTitle>{foundTodo.title}</StTitle>
-      <StP>{foundTodo.contents}</StP>
-      <StBtn
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        이전으로
-      </StBtn>
+      {foundTodo ? (
+        <>
+          <StId>ID : {foundTodo.id}</StId>
+          <StTitle>{foundTodo.title}</StTitle>
+          <StP>{foundTodo.contents}</StP>
+          <StBtn
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            이전으로
+          </StBtn>
+        </>
+      ) : (
+        <p>Todo를 찾을 수 없습니다.</p>
+      )}
     </StDiv>
   );
 }

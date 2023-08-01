@@ -1,5 +1,5 @@
-import nonChecked from 'img/nonChecked.jpg';
-import { useState } from 'react';
+import { nonCheckedImg } from 'images';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from 'redux/modules/todos';
 import { styled } from 'styled-components';
@@ -9,15 +9,15 @@ function Form() {
   const INIT_VALUE = { title: '', contents: '', id: Date.now(), isDone: false };
   const [todo, setTodo] = useState(INIT_VALUE);
 
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setTodo({ ...todo, [name]: value });
   };
 
   // 투두 추가 관련
   const dispatch = useDispatch();
 
-  const onSubmitAddHandler = (e) => {
+  const onSubmitAddHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (todo.title === '' || todo.contents === '') return;
 
@@ -28,7 +28,7 @@ function Form() {
   return (
     <StForm onSubmit={onSubmitAddHandler}>
       <StDiv>
-        <StImg src={nonChecked} alt="체크" />
+        <StImg src={nonCheckedImg} alt="체크" />
         <StInput
           type="text"
           placeholder="제목을 입력하세요"
