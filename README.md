@@ -13,6 +13,8 @@
 
 ### 2. 페이지
 
+https://my-todolist-ts-lv2.vercel.app/
+
 ![image](https://github.com/yeongsbook/react-typescript-example/assets/130683029/e11a7cf3-f833-460c-80cc-3b7a094cfcab)
 버튼 호버시에 완료 또는 취소 글자가 나타남
 
