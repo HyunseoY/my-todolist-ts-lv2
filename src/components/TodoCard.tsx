@@ -1,24 +1,23 @@
-import Check from 'img/Check.png';
-import Delete from 'img/Delete.png';
-import Detail from 'img/Detail.png';
-import nonChecked from 'img/nonChecked.jpg';
+import { checkImg, deleteImg, detailImg, nonCheckedImg } from 'images';
+import { TodoCardProps } from 'model/interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from 'redux/config/configStore';
 import { deleteTodo, updateTodo } from 'redux/modules/todos';
 import { styled } from 'styled-components';
 
-function TodoCard({ isDone }) {
+function TodoCard({ isDone }: TodoCardProps) {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state: RootState) => state.todos.todos);
 
-  const onClickDeleteBtn = (id) => {
+  const onClickDeleteBtn = (id: number) => {
     const confirmDelete = window.confirm('정말 삭제하시겠습니까?');
     if (confirmDelete) {
       dispatch(deleteTodo(id));
     }
   };
 
-  const onClickUpdateBtn = (id) => {
+  const onClickUpdateBtn = (id: number) => {
     dispatch(updateTodo(id));
   };
 
@@ -32,9 +31,9 @@ function TodoCard({ isDone }) {
             <StDiv key={item.id}>
               <StUpdateBtn onClick={() => onClickUpdateBtn(item.id)}>
                 {isDone ? (
-                  <StUpdateImg src={Check} alt="완료버튼" />
+                  <StUpdateImg src={checkImg} alt="완료버튼" />
                 ) : (
-                  <StUpdateImg src={nonChecked} alt="취소버튼" />
+                  <StUpdateImg src={nonCheckedImg} alt="취소버튼" />
                 )}
                 <StButtonLabel>{isDone ? '취소' : '완료'}</StButtonLabel>
               </StUpdateBtn>
@@ -46,10 +45,10 @@ function TodoCard({ isDone }) {
 
               <StBtns>
                 <Link to={`/detail/${item.id}`}>
-                  <StImg src={Detail} alt="상세보기" />
+                  <StImg src={detailImg} alt="상세보기" />
                 </Link>
                 <StDeleteBtn onClick={() => onClickDeleteBtn(item.id)}>
-                  <StImg src={Delete} alt="삭제버튼" />
+                  <StImg src={deleteImg} alt="삭제버튼" />
                 </StDeleteBtn>
               </StBtns>
             </StDiv>

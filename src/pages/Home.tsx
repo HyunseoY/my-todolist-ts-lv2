@@ -1,9 +1,8 @@
 import Form from 'components/Form';
 import Header from 'components/Header';
 import List from 'components/List';
-import Cappadocia from 'img/Cappadocia.jpg';
+import { cappadociaImg } from 'images';
 import styled from 'styled-components';
-import '../App.css';
 
 function Home() {
   return (
@@ -26,7 +25,7 @@ const StSection = styled.section`
       rgba(185, 98, 239, 0.8),
       rgba(114, 166, 250, 0.8)
     ),
-    url(${Cappadocia});
+    url(${cappadociaImg});
   background-size: cover;
   width: 100%;
   height: 300px;
